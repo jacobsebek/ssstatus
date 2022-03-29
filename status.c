@@ -102,6 +102,7 @@ int main(int argc, char *argv[]) {
     int num_entries;
     sigset_t rtsigset;
     struct entry* entries = load(&num_entries, &rtsigset);
+    sigprocmask(SIG_BLOCK, &rtsigset, NULL);
 
     puts("{\"version\": 1 }");
     putchar('[');
