@@ -40,3 +40,8 @@ setxkbmap -query | awk '/layout/{print $2}'; 8!; d0ffd0;;
 ```
 The following status is produced:
 ![A screenshot of the resulting status bar](screen1.png)
+
+## Errata
+- The configuration parser assumes valid input and otherwise has undefined behaviour. Unless the supplied configuration is crafted with malicious intent, this will usually only crash ssstatus.
+- Command output is cut off at the first line break and echoed verbatim, this can result in invalid JSON output. (E.g. when the command output contains unescaped quotation marks (").)
+- All commands are executed on a single thread in blocking mode, the timing requirements are only realised on a best-effort basis and each command cannot queue up more than once.
